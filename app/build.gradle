@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.springframework.boot' version '3.2.2'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 1. WEB STARTER: Makes this a REST API server (Tomcat + JSON support)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // 2. ROME: The RSS parsing library
+    implementation 'com.rometools:rome:2.1.0'
+
+    // 3. DEV TOOLS: (Optional but recommended) restarts server automatically when you save
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // Testing
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+application {
+    // Matches your package structure
+    mainClass = 'dashboard.App'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
